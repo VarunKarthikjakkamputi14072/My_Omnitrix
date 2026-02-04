@@ -1,0 +1,88 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Orbitron', sans-serif; }
+body { background: #000; color: #e5e7eb; height: 100vh; overflow: hidden; text-align: center; }
+
+.dashboard-wrapper { width: 100%; height: 100vh; display: flex; justify-content: center; position: relative; }
+
+/* CENTERED HUB */
+.control-hub {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 100%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; z-index: 100;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.dial-system { display: flex; align-items: center; justify-content: center; gap: 60px; }
+
+.main-core {
+    width: 320px; height: 320px; border-radius: 50%;
+    background: radial-gradient(circle, #57eb8e 0%, #16a34a 60%, #064e3b 100%);
+    border: 12px solid #022c22; cursor: pointer;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 60px #00ff8788; transition: 0.5s;
+}
+
+.insignia { font-size: 3.5rem; color: #000; font-weight: 900; }
+
+/* BLINKING RED STATUS */
+body.dial-active .status-msg {
+    color: #ef4444;
+    animation: blinkRed 1s infinite;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@keyframes blinkRed {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px #ef4444; }
+    50% { opacity: 0.3; text-shadow: none; }
+}
+
+/* WHITE LINKS */
+.white-link { color: #ffffff !important; text-decoration: none; border-bottom: 1px solid transparent; }
+.white-link:hover { border-bottom: 1px solid #ffffff; }
+
+/* DATA STREAM - INCREASED SIZE & SPACING */
+.data-stream {
+    position: absolute; right: 0; top: 0; width: calc(100% - 450px);
+    height: 100vh; overflow-y: auto; opacity: 0; visibility: hidden;
+    transition: 0.8s; padding: 15vh 8vw; scroll-behavior: smooth;
+    text-align: left;
+}
+
+.stream-card { 
+    min-height: 85vh; /* This ensures sections are tall enough to trigger rolling sync */
+    margin-bottom: 15vh; 
+}
+
+.content-text, .entry-sub, .ben-list li, .skills-layout p {
+    font-size: 1.4rem; 
+    line-height: 2;
+    margin-bottom: 15px;
+}
+
+.section-title { 
+    color: #00e676; font-size: 4.5rem; letter-spacing: 10px; 
+    border-bottom: 5px solid #facc15; margin-bottom: 50px;
+    display: inline-block;
+}
+
+/* RED EXIT BUTTON */
+.exit-link {
+    background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444;
+    padding: 15px 40px; cursor: pointer; font-size: 1rem; letter-spacing: 4px;
+    opacity: 0; transition: 0.5s; margin-top: 40px;
+}
+
+/* TRANSFORMED STATE */
+body.transformed .control-hub { 
+    left: 225px; transform: translate(-50%, -50%) scale(0.65); width: 450px; 
+}
+body.transformed .exit-link { opacity: 1; }
+body.transformed .data-stream { opacity: 1; visibility: visible; }
+
+.top-rack { position: fixed; top: 25px; right: 50px; display: flex; gap: 20px; opacity: 0; z-index: 200; }
+body.transformed .top-rack { opacity: 1; }
+.rack-btn { background: #000; border: 1px solid #00e676; color: #00e676; padding: 12px 24px; cursor: pointer; font-size: 0.9rem; }
+.rack-btn.active { background: #00e676; color: #000; box-shadow: 0 0 20px #00e676; }
+
+.nav-dial-btn { opacity: 0; pointer-events: none; transition: 0.3s; background: none; border: 2px solid #00e676; color: #00e676; border-radius: 50%; width: 70px; height: 70px; cursor: pointer; font-size: 1.5rem;}
+body.dial-active .nav-dial-btn { opacity: 1; pointer-events: all; }
