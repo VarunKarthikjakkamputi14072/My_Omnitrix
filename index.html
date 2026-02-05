@@ -3,94 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VJK Portfolio | Omnitrix Terminal</title>
+    <title>Varun J | Ultimate Omnitrix Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="gateway-mode">
+    <div class="scanlines"></div>
+    <div id="energyWave" class="energy-wave"></div>
+
     <main class="dashboard-wrapper">
         <nav class="top-rack" id="topNav">
-            <button class="rack-btn" data-sec="about">ABOUT</button>
-            <button class="rack-btn" data-sec="education">EDUCATION</button>
-            <button class="rack-btn" data-sec="experience">WORK</button>
-            <button class="rack-btn" data-sec="projects">PROJECTS</button>
-            <button class="rack-btn" data-sec="skills">SKILLS</button>
+            <button class="rack-btn" onclick="scrollToSec('about')">ABOUT</button>
+            <button class="rack-btn" onclick="scrollToSec('education')">EDUCATION</button>
+            <button class="rack-btn" onclick="scrollToSec('experience')">WORK</button>
+            <button class="rack-btn" onclick="scrollToSec('projects')">PROJECTS</button>
+            <button class="rack-btn" onclick="scrollToSec('skills')">SKILLS</button>
         </nav>
 
         <aside class="control-hub" id="controlHub">
-            <div id="alienLabel" class="alien-name-tag"></div>
             <div class="dial-system">
-                <button id="prevBtn" class="nav-dial-btn side-left">◀</button>
-                <div class="omnitrix-container">
+                <button id="prevBtn" class="nav-dial-btn">◀</button>
+                
+                <div class="omnitrix-container" id="omniContainer">
+                    <div class="bezel-ring"></div>
+                    <div class="dna-scanner"></div> 
+                    <div class="energy-glow"></div>
                     <button id="coreButton" class="main-core">
                         <div id="coreDisplay" class="insignia">VJK</div>
                     </button>
                 </div>
-                <button id="nextBtn" class="nav-dial-btn side-right">▶</button>
+
+                <button id="nextBtn" class="nav-dial-btn">▶</button>
             </div>
+
             <div class="hub-footer">
-                <h2 class="user-id">VARUN KARTHIK JAKKAMPUTI</h2>
-                <div class="contact-sub">
-                    <span class="loc">Buffalo, NY</span> | 
-                    <a href="mailto:jakkamputivarunkarthik@gmail.com" class="white-link">Email</a> | 
-                    <a href="https://github.com/VarunKarthikjakkamputi14072" target="_blank" class="white-link">Github</a>
+                <h2 class="user-id">VARUN K. JAKKAMPUTI</h2>
+                <div class="status-container">
+                    <span class="pulse-dot"></span>
+                    <p id="systemStatus" class="status-msg">SYSTEM READY: TAP CORE</p>
                 </div>
-                <p id="systemStatus" class="status-msg">SYSTEM READY: TAP CORE</p>
-                <div class="hub-controls">
-                    <button id="resetBtn" class="exit-link">CLOSE UPLINK</button>
-                </div>
+                <button id="resetBtn" class="rack-btn exit-btn">DETACH SYSTEM</button>
             </div>
         </aside>
 
         <section class="data-stream" id="mainPanel">
-            <div class="scroll-inner">
+            <div class="scroll-container">
                 <section class="stream-card" id="about">
-                    <h1 class="section-title">ABOUT ME</h1>
-                    <p class="content-text">Computer Science graduate student at <strong>SUNY Buffalo</strong>. Specialized in building backend systems, full-stack applications, and AI-powered products like RAG pipelines.</p>
+                    <h1 class="section-title">BIOMETRIC PROFILE</h1>
+                    <div class="card-content">
+                        <p>Computer Science graduate student at <strong>SUNY Buffalo</strong>. Specializing in high-performance backend systems and AI-powered RAG pipelines.</p>
+                    </div>
                 </section>
 
                 <section class="stream-card" id="education">
-                    <h1 class="section-title">EDUCATION</h1>
+                    <h1 class="section-title">ACADEMIC DATA</h1>
                     <div class="data-entry">
-                        <h3>STATE UNIVERSITY OF NEW YORK AT BUFFALO</h3>
-                        <p class="entry-sub">Masters, Computer Science · GPA: 3.2/4.0</p>
+                        <h3>University at Buffalo</h3>
+                        <p class="sub-text">Masters, CS · GPA: 3.2/4.0 · 2026</p>
                     </div>
                     <div class="data-entry">
-                        <h3>SRM INSTITUTE OF SCIENCE AND TECHNOLOGY</h3>
-                        <p class="entry-sub">Bachelors, Computer Science · GPA: 8.9/10.0</p>
+                        <h3>SRM Institute of Science and Technology</h3>
+                        <p class="sub-text">Bachelors, CS · GPA: 8.9/10.0 · 2024</p>
                     </div>
                 </section>
 
                 <section class="stream-card" id="experience">
-                    <h1 class="section-title">WORK EXPERIENCE</h1>
+                    <h1 class="section-title">FIELD MISSIONS</h1>
                     <div class="data-entry">
-                        <h3>Dynish · Full-Stack Developer Intern</h3>
+                        <h3 class="mission-name">Dynish · Full-Stack Intern</h3>
+                        <p class="data-date">Dec 2022 – Jan 2024</p>
                         <ul class="ben-list">
-                            <li>Built scalable backend services with Node.js and Django with RESTful APIs.</li>
-                            <li>Developed PostgreSQL data models and optimized queries, improving response time by 35%.</li>
-                            <li>Integrated authentication and authorization using OAuth2/JWT.</li>
+                            <li>Built scalable Node.js/Django backend services.</li>
+                            <li>Optimized PostgreSQL, boosting speed by 35%.</li>
+                            <li>Secured systems using OAuth2 and JWT protocols.</li>
                         </ul>
                     </div>
                 </section>
 
                 <section class="stream-card" id="projects">
-                    <h1 class="section-title">PROJECTS</h1>
+                    <h1 class="section-title">ACTIVE ARCHIVES</h1>
                     <div class="data-entry">
-                        <h3>Doc Chat</h3>
-                        <p class="data-tech">Next.js, Tailwind, AWS S3, Lambda, Pinecone, LangChain</p>
-                        <ul class="ben-list">
-                            <li>Built a serverless document ingestion pipeline and RAG flow for grounded responses.</li>
-                        </ul>
+                        <h3>Doc Chat (RAG AI)</h3>
+                        <p class="data-tech">Next.js, AWS S3, Pinecone, LangChain</p>
+                        <p>Serverless AI pipeline that chats with your documents using vector similarity search.</p>
                     </div>
                 </section>
 
                 <section class="stream-card" id="skills">
-                    <h1 class="section-title">SKILLS</h1>
-                    <div class="skills-layout">
-                        <p><strong>Languages:</strong> Java, Python, JavaScript, TypeScript</p>
-                        <p><strong>Frameworks:</strong> Spring Boot, Django, React.js, Next.js</p>
-                        <p><strong>Backend:</strong> REST APIs, Microservices, JWT/OAuth, WebSockets</p>
-                        <p><strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, PineCone</p>
+                    <h1 class="section-title">TECH ARSENAL</h1>
+                    <div class="skills-grid">
+                        <div class="skill-category"><strong>LANG:</strong> Java, Python, JS, TS</div>
+                        <div class="skill-category"><strong>FRAME:</strong> Spring Boot, React, FastAPI</div>
+                        <div class="skill-category"><strong>DATA:</strong> PostgreSQL, MongoDB, Pinecone</div>
                     </div>
                 </section>
             </div>
