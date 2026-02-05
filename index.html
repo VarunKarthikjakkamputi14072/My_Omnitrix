@@ -12,6 +12,13 @@
     <div id="energyWave" class="energy-wave"></div>
 
     <main class="dashboard-wrapper">
+        <div class="bypass-container" id="bypassAuth">
+            <button class="bypass-btn" onclick="forceAccess()">
+                <span class="glitch-text">PLUMBER ACCESS: FORCE OVERRIDE</span>
+                <small>FAST-TRACK TO DATA STREAM</small>
+            </button>
+        </div>
+
         <nav class="top-rack" id="topNav">
             <button class="rack-btn" onclick="scrollToSec('about')">ABOUT</button>
             <button class="rack-btn" onclick="scrollToSec('education')">EDUCATION</button>
@@ -26,10 +33,9 @@
                 
                 <div class="omnitrix-container" id="omniContainer">
                     <div class="bezel-ring"></div>
-                    <div class="dna-scanner"></div> 
                     <div class="energy-glow"></div>
                     <button id="coreButton" class="main-core">
-                        <div id="coreDisplay" class="insignia">VJK</div>
+                        <span id="coreDisplay" class="insignia">J</span>
                     </button>
                 </div>
 
@@ -37,7 +43,7 @@
             </div>
 
             <div class="hub-footer">
-                <h2 class="user-id">VARUN K. JAKKAMPUTI</h2>
+                <h2 class="user-id hidden-name" id="userName">VARUN KARTHIK JAKKAMPUTI</h2>
                 <div class="status-container">
                     <span class="pulse-dot"></span>
                     <p id="systemStatus" class="status-msg">SYSTEM READY: TAP CORE</p>
@@ -52,6 +58,17 @@
                     <h1 class="section-title">BIOMETRIC PROFILE</h1>
                     <div class="card-content">
                         <p>Computer Science graduate student at <strong>SUNY Buffalo</strong>. Specializing in high-performance backend systems and AI-powered RAG pipelines.</p>
+                        
+                        <div class="contact-links">
+                            <div class="link-item">
+                                <strong>EMAIL:</strong> 
+                                <a href="mailto:jakkamputivarunkarthik@gmail.com">jakkamputivarunkarthik@gmail.com</a>
+                            </div>
+                            <div class="link-item">
+                                <strong>GITHUB:</strong> 
+                                <a href="https://github.com/VarunKarthikjakkamputi14072" target="_blank">VarunKarthikjakkamputi14072</a>
+                            </div>
+                        </div>
                     </div>
                 </section>
 

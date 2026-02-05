@@ -17,6 +17,81 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* HIDE NAME INITIALLY */
+.hidden-name {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+
+.show-name {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* SLEEK NEON BYPASS BUTTON */
+.bypass-container {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.bypass-btn {
+    background: transparent;
+    border: 1px solid var(--omni-red);
+    color: var(--omni-red);
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    transition: all 0.3s ease;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(255, 61, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+.bypass-btn:hover {
+    background: var(--omni-red);
+    color: #fff;
+    box-shadow: 0 0 30px var(--omni-red);
+    transform: scale(1.05);
+}
+
+.bypass-btn small {
+    display: block;
+    font-size: 0.5rem;
+    margin-top: 3px;
+    opacity: 0.7;
+}
+
+body.transformed .bypass-container {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* CENTERED STATUS TEXT */
+.status-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#systemStatus {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.alert-red { color: var(--omni-red); text-shadow: 0 0 10px var(--omni-red); }
+
+/* Background & Scanlines */
 body::before {
     content: "";
     position: fixed;
@@ -36,20 +111,9 @@ body::before {
     z-index: 500; background-size: 100% 3px, 3px 100%; pointer-events: none;
 }
 
-/* Horizontal Dial System */
-.dial-system {
-    display: flex;
-    flex-direction: row; /* Horizontal alignment */
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-.omnitrix-container { 
-    position: relative; width: 300px; height: 300px; 
-    display: flex; justify-content: center; align-items: center;
-    flex-shrink: 0;
-}
+/* Dial System */
+.dial-system { display: flex; align-items: center; justify-content: center; gap: 15px; }
+.omnitrix-container { position: relative; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center; }
 
 .main-core {
     width: 220px; height: 220px; border-radius: 50%;
@@ -57,47 +121,31 @@ body::before {
     border: 12px solid #111; cursor: pointer;
     box-shadow: 0 0 30px var(--omni-glow), inset 0 0 20px #000;
     animation: heartbeat 2.5s infinite ease-in-out;
-    transition: 0.3s; z-index: 10;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
 }
 
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-}
+@keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
 
 .nav-dial-btn {
-    background: #111; 
-    border: 2px solid var(--omni-green); 
-    color: var(--omni-green);
-    width: 50px; 
-    height: 100px; 
-    border-radius: 12px; 
-    opacity: 0; 
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer; 
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 20;
+    background: #111; border: 2px solid var(--omni-green); color: var(--omni-green);
+    width: 50px; height: 100px; border-radius: 12px; opacity: 0; 
+    transition: 0.4s; cursor: pointer; font-size: 1.5rem;
 }
 
-body.dial-active .nav-dial-btn { opacity: 1; transform: scale(1); }
+body.dial-active .nav-dial-btn { opacity: 1; }
 .nav-dial-btn:hover { background: var(--omni-green); color: black; box-shadow: 0 0 20px var(--omni-green); }
 
-/* Layout adjustments */
+/* Layout & Panels */
 .dashboard-wrapper { width: 100%; height: 100vh; position: relative; display: flex; }
-
 .control-hub {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 600px; display: flex; flex-direction: column; align-items: center;
     z-index: 100; transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-body.transformed .control-hub {
-    left: 40px; transform: translate(0, -50%) scale(0.6);
-    width: 400px;
-}
+body.transformed .control-hub { left: 40px; transform: translate(0, -50%) scale(0.6); width: 400px; }
 
 .data-stream {
     flex: 1; margin-left: 450px; padding: 100px 8vw;
@@ -106,32 +154,55 @@ body.transformed .control-hub {
 }
 body.transformed .data-stream { opacity: 1; visibility: visible; transform: translateX(0); }
 
-.insignia { font-weight: 900; font-size: 2.8rem; color: #000; transition: 0.3s; }
+.insignia { 
+    font-weight: 900; 
+    font-size: 2.8rem; 
+    color: #000; 
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+    display: inline-block;
+}
 
 #resetBtn { 
-    display: none; width: 320px; padding: 18px; font-size: 1.2rem;
-    font-weight: 900; border: 3px solid var(--omni-red);
-    background: rgba(255, 61, 0, 0.1); color: var(--omni-red);
-    margin-top: 25px; cursor: pointer; transition: 0.3s;
+    display: none; width: 320px; padding: 18px; font-weight: 900; 
+    border: 3px solid var(--omni-red); background: rgba(255, 61, 0, 0.1); 
+    color: var(--omni-red); margin-top: 25px; cursor: pointer;
 }
 body.dial-active #resetBtn { display: block; }
 
-/* Sections Styling */
+/* Content Styling */
 .section-title { color: var(--omni-green); font-size: 2.5rem; border-left: 8px solid var(--omni-green); padding-left: 20px; margin-bottom: 25px; }
 .stream-card { background: rgba(0, 255, 136, 0.05); backdrop-filter: blur(15px); border: 1px solid var(--omni-green); padding: 40px; border-radius: 20px; margin-bottom: 80px; }
+
+.contact-links { margin-top: 30px; display: flex; flex-direction: column; gap: 15px; }
+.link-item { background: rgba(0, 255, 136, 0.1); padding: 15px; border-left: 4px solid var(--omni-green); font-size: 0.9rem; }
+.link-item a { color: var(--omni-green); text-decoration: none; word-break: break-all; margin-left: 10px; transition: 0.3s; }
+.link-item a:hover { text-shadow: 0 0 10px var(--omni-green); color: white; }
+
 .top-rack { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; opacity: 0; transition: 0.5s; z-index: 600; }
 body.transformed .top-rack { opacity: 1; }
 .rack-btn { background: rgba(0,0,0,0.8); border: 1px solid var(--omni-green); color: var(--omni-green); padding: 12px 20px; font-size: 0.8rem; cursor: pointer; }
 
-/* Selection Flash Animation */
+/* Triple Wave Transformation Animation */
+.energy-wave { 
+    position: fixed; top: 50%; left: 50%; 
+    width: 0; height: 0; transform: translate(-50%, -50%); 
+    pointer-events: none; z-index: 400; opacity: 0; 
+    border-radius: 50%; border: 0px solid var(--omni-green); 
+}
+
+.wave-active { animation: triplePulse 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+@keyframes triplePulse { 
+    0% { width: 0; height: 0; opacity: 1; border-width: 100px; border-color: var(--omni-green); }
+    30% { width: 100vw; height: 100vw; opacity: 0.6; border-width: 40px; }
+    50% { width: 0; height: 0; opacity: 1; border-width: 80px; border-color: #fff; } 
+    70% { width: 150vw; height: 150vw; opacity: 0.4; border-width: 20px; }
+    100% { width: 300vw; height: 300vw; opacity: 0; border-width: 2px; } 
+}
+
 @keyframes selectionFlash {
     0% { box-shadow: 0 0 0px #fff; filter: brightness(1); }
     50% { box-shadow: 0 0 70px var(--omni-selection); filter: brightness(2.5); }
     100% { box-shadow: 0 0 30px var(--omni-glow); filter: brightness(1); }
 }
 .selection-pulse { animation: selectionFlash 0.4s ease-out; }
-
-/* Energy Wave */
-.energy-wave { position: fixed; top: 50%; left: 50%; width: 0; height: 0; transform: translate(-50%, -50%); pointer-events: none; z-index: 400; opacity: 0; border-radius: 50%; border: 0px solid var(--omni-green); }
-.wave-active { animation: expandWave 0.7s ease-out; }
-@keyframes expandWave { 0% { width: 0; height: 0; opacity: 1; border-width: 40px; } 100% { width: 250vw; height: 250vw; opacity: 0; border-width: 2px; } }

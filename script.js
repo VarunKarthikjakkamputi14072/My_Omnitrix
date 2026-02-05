@@ -6,20 +6,34 @@ const statusText = document.getElementById('systemStatus');
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
 const wave = document.getElementById('energyWave');
+const userName = document.getElementById('userName');
 
 let currentIdx = 0;
 let isDialActive = false; 
 const sectionIcons = ["🧬", "🎓", "💼", "🚀", "🛠️"];
 const sectionIds = ['about', 'education', 'experience', 'projects', 'skills'];
 
-// Handle Main Core Clicks
+function forceAccess() {
+    isDialActive = true;
+    body.classList.add('dial-active');
+    body.classList.add('transformed');
+    userName.classList.add('show-name'); // Show name on override
+    updateInsignia(0);
+    statusText.innerText = "OVERRIDE ACTIVE";
+    statusText.classList.remove('alert-red');
+    scrollToSec('about');
+    wave.classList.add('wave-active');
+    setTimeout(() => wave.classList.remove('wave-active'), 1200);
+}
+
 coreBtn.onclick = () => {
     if (!isDialActive) {
         isDialActive = true;
         body.classList.add('dial-active');
+        userName.classList.add('show-name'); // Show name on first tap
         triggerFlash();
         updateInsignia(0);
-        statusText.innerText = "SELECT DATAMODULE";
+        statusText.innerText = "SELECT DATAMODULE"; 
         statusText.classList.add('alert-red');
     } else if (!body.classList.contains('transformed')) {
         triggerTransformation();
@@ -43,16 +57,18 @@ function triggerTransformation() {
         statusText.innerText = "LINK ESTABLISHED";
         statusText.classList.remove('alert-red');
         scrollToSec(sectionIds[currentIdx]);
-    }, 600);
+    }, 1200);
 }
 
 function updateInsignia(idx) {
     currentIdx = idx;
+    const rotationDegrees = idx * 72;
     coreDisplay.innerHTML = sectionIcons[idx];
     coreDisplay.style.fontSize = "5rem";
     
-    // Smooth dial rotation logic
-    coreBtn.style.transform = `rotate(${idx * 72}deg)`;
+    coreBtn.style.transform = `rotate(${rotationDegrees}deg)`;
+    coreDisplay.style.transform = `rotate(-${rotationDegrees}deg)`;
+    
     triggerFlash();
     
     if (body.classList.contains('transformed')) {
@@ -79,10 +95,12 @@ prevBtn.onclick = (e) => {
 
 resetBtn.onclick = () => {
     body.classList.remove('transformed', 'dial-active');
+    userName.classList.remove('show-name'); // Hide name on reset
     isDialActive = false;
-    coreDisplay.innerHTML = "VJK";
+    coreDisplay.innerHTML = "J"; 
     coreDisplay.style.fontSize = "2.8rem";
     coreBtn.style.transform = "rotate(0deg)";
+    coreDisplay.style.transform = "rotate(0deg)";
     statusText.innerText = "SYSTEM READY: TAP CORE";
     statusText.classList.remove('alert-red');
     window.scrollTo({top: 0, behavior: 'smooth'});
